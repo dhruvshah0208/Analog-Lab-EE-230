@@ -1,0 +1,20 @@
+Dhruv Shah 190020039 RC Integrator Circuit
+*Circuit Description
+r1 1 2 10k
+c1 2 0 0.1u
+*Voltage Description 
+*v1n 1 0 pulse(0 5 delay rise_time fall_time T Period)
+v1n 1 0 pulse(0 5 0 0 0 0.1m 0.6m)
+
+*transient Analysis
+*.tran step 3*period
+
+.tran 0.1m 6m
+.control
+run
+
+*Plotting
+plot v(1) v(2)
+hardcopy integrator_pt1tau.ps v(1) v(2)
+.endc
+.end

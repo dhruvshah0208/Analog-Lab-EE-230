@@ -1,0 +1,16 @@
+Dhruv Shah 190020039 RC Highpass Filter
+*Circuit Description
+r1 2 0 10k
+c1 1 2 0.1u
+*Voltage Description 
+vin 1 0 dc 0 ac 1
+
+*AC analysis for 1 Hz to 1MHz, 10 points per decade
+.ac dec 10 1 1Meg
+.control
+run
+
+*Magnitude dB plot for v(2) on log scale
+plot vdb(2) xlog
+.endc
+.end

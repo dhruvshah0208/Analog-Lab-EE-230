@@ -1,0 +1,20 @@
+Dhruv Shah 190020039 RC Differentiator Circuit
+*Circuit Description
+r1 2 0 10k
+c1 1 2 0.1u
+*Voltage Description 
+*v1n 1 0 pulse(0 5 delay rise_time fall_time T Period)
+v1n 1 0 pulse(0 5 1m 0.1m 0.1m 10m 20m)
+
+*transient Analysis
+*.tran step 3*period
+
+.tran 0.1m 60m
+.control
+run
+
+*Plotting
+plot v(1) v(2)
+harcopy diff_10tau.ps
+.endc
+.end
