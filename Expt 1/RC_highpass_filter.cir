@@ -12,5 +12,7 @@ run
 
 *Magnitude dB plot for v(2) on log scale
 plot vdb(2) xlog
+set hcopypscolor = 1
+hardcopy high_pass.ps vdb(2)
 .endc
 .end

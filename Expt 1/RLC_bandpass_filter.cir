@@ -1,6 +1,6 @@
 Dhruv Shah 190020039 RLC Bandpass Filter
 *Circuit Description
-r1 2 0 10k
+r1 2 0 1k
 l2 1 3 10m
 c2 3 2 0.1u
 
@@ -14,6 +14,14 @@ run
 
 *Magnitude dB plot for v(2) on log scale
 plot vdb(2) xlog
+set hcopypscolor = 1
 hardcopy RLC_band_pass.ps vdb(2)
+*Measurements
+meas ac peak MAX vmag(2)
+meas ac fpeak WHEN vmag(2)=peak
+let f3db = peak / sqrt(2)
+meas ac f1 WHEN vmag(2) = f3db RISE = 1
+meas ac f2 WHEN vmag(2) = f3db FALL = 1 
+
 .endc
 .end
