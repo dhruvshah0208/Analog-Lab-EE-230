@@ -1,0 +1,32 @@
+Unregulated DC Power supply
+
+.model 1N4007 D (IS=5.44e-7 N=2.337 RS=0.0429 BV=1000 IBV=5u tnom=25e0)
+
+v A B sin(0 21.213 50)
+
+D1 A dummy1 1N4007
+vdummy1 dummy1 out dc 0
+
+D2 B out 1N4007
+
+D3 gnd dummy2 1N4007
+vdummy2 dummy2 A dc 0
+
+D4 gnd B 1N4007
+Rl out gnd 1000
+
+.tran 0.001 0.1
+
+.control
+
+run
+
+set hcopydevtype=postscript
+set hcopypscolor=1
+*hardcopy unreg_currents.eps i(vdummy1) i(vdummy2)
+
+plot i(vdummy1) i(vdummy2)
+*plot v(A)-v(B)-v(out)
+
+.endc
+.end

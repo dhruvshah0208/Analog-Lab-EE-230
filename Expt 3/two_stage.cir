@@ -1,0 +1,33 @@
+190020039 Dhruv Shah Two stage
+* //Include models
+.model bc547a NPN IS=10f BF=200 ISE=10.3f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=280 RE=1 RC=40
++ tr=0.3u tf=0.5n cje=12p vje=0.48 mje=0.5 cjc=6p vjc=0.7 mjc=0.33 kf=2f
+
+Vcc 1 0 12
+Rc 1 2 1.2k
+R1 1 3 10k
+R2 3 0 2.2k
+Q1 2 3 5 bc547a
+Q2 1 2 6 bc547a
+Re 5 0 1k
+Re2 6 0 10k
+Rs 7 4 0
+C1 4 3 10u
+C2 6 8 10u
+RL 8 0 5k
+Ce 5 0 100u
+Vin 7 0 dc 0 ac 1
+.ac dec 10 1 100000meg
+.control
+run
+meas ac peak MAX vdb(8)
+meas ac fpeak WHEN vmag(8)=peak
+let f3db = peak / sqrt(2)
+meas ac f1 WHEN vmag(8)= f3db RISE=1
+meas ac f2 WHEN vmag(8)= f3db FALL=1
+set hcopypscolor=1
+hardcopy two_stage.ps vdb(8)
+plot vdb(8)
+.endc
+

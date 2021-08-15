@@ -1,0 +1,25 @@
+Dhruv Shah
+.model bc547a NPN IS=10f BF=200 ISE=10.3f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=280 RE=1 RC=40
++ tr=0.3u tf=0.5n cje=12p vje=0.48 mje=0.5 cjc=6p vjc=0.7 mjc=0.33 kf=2f
+
+Vcc 1 0 12
+R1 2 1 10k
+R2 2 0 2.2k
+Rc 1 3 1.2k
+Re 4 0 1k
+Ce 4 0 100u
+Q1 5 6 7 bc547a
+
+* //Dummy Voltages
+Vb1 2 6 0
+Ve1 7 4 0
+Vc1 3 5 0
+.op
+
+.control
+run
+print i(Vb1) i(Vc1) i(Ve1)
+print V(5) V(6) V(7)
+.endc	
+

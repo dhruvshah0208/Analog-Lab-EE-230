@@ -1,0 +1,32 @@
+Dhruv Shah 190020039 BJT_case3
+
+.model bc547a NPN IS=10f BF=200 ISE=10.3f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=280 RE=1 RC=40
++ tr=0.3u tf=0.5n cje=12p vje=0.48 mje=0.5 cjc=6p vjc=0.7 mjc=0.33 kf=2f
+
+.model SL100 NPN IS=100f BF=80 ISE=10.3f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=100 RE=1 RC=10
++ tr=0.3u tf=0.5n cje=12p vje=0.48 mje=0.5 cjc=6p vjc=0.7 mjc=0.33 kf=2f
+
+.model Z5p6 D(Is=1.5n Rs=.5 Cjo=185p nbv=3 bv=5.6 Ibv=1m)
+
+Vin in 0 dc 0
+Rc in 1 1k
+q1 in 1 out SL100
+q2 1 3 2 bc547a
+d_zener 0 2 Z5p6
+r1 out 3 10.75k
+r2 3 0 14.25k
+rl out 0 1k
+
+.dc vin 15 25 0.5
+.control
+
+run
+
+plot v(in) v(out)
+set hcopydevtype=postscript
+set hcopypscolor=1
+hardcopy q3_plot1.ps v(in) v(out) 
+.endc
+.end

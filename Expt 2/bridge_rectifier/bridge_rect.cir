@@ -1,0 +1,21 @@
+$ Dhruv Shah 190020039
+
+Vin  n1 n2  SIN(0 220 50)
+
+D13  n1 out  1N914
+D23  n2 out  1N914
+D41  0 n1  1N914
+D42  0 n2  1N914
+
+CL  out 0  100u
+RL  out 0  1k
+
+.MODEL 1N914 D (IS=6.2229E-9  N=1.9224  RS=0.33636  IKF=42.843E-3  CJO=764.38E-15 
++ M=0.1001 VJ=0.99900  BV=100.14  IBV=0.25951  TT=2.8854E-9)
+
+.TRAN  0.1m 60m
+.control
+run
+plot v(out) v(n1)-v(n2)
+
+.END

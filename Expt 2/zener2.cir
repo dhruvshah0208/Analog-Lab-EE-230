@@ -1,0 +1,36 @@
+Dhruv Shah 190020039 Zener_2
+
+.SUBCKT ZENER_12 1 2
+D1 1 2 DF
+DZ 3 1 DR
+VZ 2 3 10.8
+.MODEL DF D ( IS=27.5p RS=0.620 N=1.10 CJO=78.3p VJ=1.00 M=0.330 TT=50.1n )
+.MODEL DR D ( IS=5.49f RS=125 N=1.77 )
+.ENDS
+
+Vin in 0 0
+Rs in dummy_r 470
+vrdummy dummy_r out dc 0
+
+vzdummy out dummy_z dc 0
+x_zener 0 dummy_z ZENER_12
+
+Rl out dummy_load 1000
+voutdummy dummy_load 0 dc 0
+
+.dc vin 15 25 0.5
+.control
+
+run
+
+plot v(in) v(out)
+plot i(voutdummy) i(vrdummy) i(vzdummy)
+
+set hcopydevtype=postscript
+set hcopypscolor=1
+hardcopy q2_plot1.ps v(in) v(out)
+hardcopy q2_-plot2.ps i(voutdummy) i(vrdummy) i(vzdummy)
+
+
+.endc
+.end

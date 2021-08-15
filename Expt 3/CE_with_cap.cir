@@ -1,0 +1,42 @@
+190020039 Dhruv Shah CE_with cap
+.model bc547a NPN IS=10f BF=200 ISE=10.3f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=280 RE=1 RC=40
++ tr=0.3u tf=0.5n cje=12p vje=0.48 mje=0.5 cjc=6p vjc=0.7 mjc=0.33 kf=2f
+
+Vcc 1 0 12
+R1 2 1 10k
+R2 2 0 2.2k
+Rc 1 3 1.2k
+Re 4 0 1k
+Ce 4 0 100u
+Q1 5 6 7 bc547a
+Vin 8 0 dc 0 ac 10
+C1 9 6 10u
+C2 5 10 10u
+* Case 1
+Rs 8 9 0k
+Rl 10 0 1.2k
+* Case 2
+Rs 8 9 0k
+Rl 10 0 12k
+* Case 3
+Rs 8 9 2.2k
+* Case 4
+Rs 8 9 10k
+* //Dummy Voltages
+Vb1 2 6 0
+Ve1 7 4 0
+Vc1 3 5 0
+.ac dec 10 1 100000meg
+.control
+run	
+meas ac peak MAX vdb(10)
+meas ac fpeak WHEN vmag(10)=peak
+let f3db = peak / sqrt(10)
+meas ac f1 WHEN vmag(10)= f3db RISE=1
+meas ac f2 WHEN vmag(10)= f3db FALL=1
+set hcopypscolor=1
+hardcopy q1_10.ps vdb(10)
+plot vdb(10)
+.endc
+

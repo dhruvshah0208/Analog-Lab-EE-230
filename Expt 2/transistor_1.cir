@@ -1,0 +1,33 @@
+190040112 BJT
+* // I n c l u d e models
+.SUBCKT ZENER 56 1 2
+D1 1 2 DF
+DZ 3 1 DR
+VZ 2 3 4 . 4 3
+.MODEL DF D ( I S =27.5 p RS=0.620 N=1.10 CJO=78.3 p VJ=1.00 M=0.330 TT=50.1 n )
+.MODEL DR D ( I S =5.49 f RS=50 N=1.77 )
+.ENDS
+* // D e s c r i b e c i r c u i t
+. model bc547a NPN I S =10 f BF=200 ISE =10.3 f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=280 RE=1 RC=40
++ t r =0.3u t f =0.5n c j e =12p v j e =0.48 mje =0.5 c j c =6p v j c =0.7 mjc =0.33 k f =2 f
+. model SL100 NPN I S =100 f BF=80 ISE =10.3 f IKF=50m NE=1.3
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=100 RE=1 RC=10
++ t r =0.3u t f =0.5n c j e =12p v j e =0.48 mje =0.5 c j c =6p v j c =0.7 mjc =0.33 k f =2 f
+v i n 1 0 20
+Q1 1 2 3 SL100
+Q2 2 5 4 bc547a
+r c 1 2 1k
+x1 0 4 ZENER 56
+r1 3 5 10.15 k
+r2 5 0 14.85 k
+r l 3 0 1k
+* // A n a l y s i s Command
+. op
+. control
+run
+* // d i s p l a y command
+print v(3)
+print v(5)
+. endc
+. end
