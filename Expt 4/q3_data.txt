@@ -1,0 +1,8 @@
+peak_vo1            =  8.737566e+00 at=  8.752800e-03
+peak_vin1           =  9.998452e-03 at=  1.925280e-02
+peak_vo2            =  8.734573e+00 at=  8.252800e-03
+trough_vo2          =  0.000000e+00 at=  2.000000e-02
+trough_vo1          =  7.604035e+00 at=  1.252800e-03
+trough_vin1         =  -9.998452e-03 at=  1.975280e-02
+(peak_vo1-trough_vo1)/(peak_vin1-trough_vin1) = 5.668532e+01
+(peak_vo2-trough_vo2)/(peak_vin1-trough_vin1) = 4.367963e+02
