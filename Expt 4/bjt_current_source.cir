@@ -1,0 +1,32 @@
+Dhruv Shah
+
+.SUBCKT DI_1N4734A  1 2 
+D1 1 2 DF 
+DZ 3 1 DR 
+VZ 2 3 4.48 
+.MODEL DF D ( IS=73.6p RS=0.620 N=1.10 
++ CJO=165p VJ=0.750 M=0.330 TT=50.1n ) 
+.MODEL DR D ( IS=14.7f RS=0.256 N=1.49 ) 
+.ENDS 
+
+v1 1 0 12 
+re 1 2 4.7k 
+Q1 4 3 2 bc557a 
+rb 3 0 2.2k 
+x1 3 1 DI_1N4734A 
+rl 0 6 10k 
+v4 4 6 0 
+.dc rl 1k 10k 1k 
+
+.model bc557a PNP IS=10f BF=100 ISE=10.3f IKF=50m NE=1.3  
++ BR=9.5 VAF=80 IKR=12m ISC=47p NC=2 VAR=10 RB=280 RE=1 RC=40  
++ tr=0.3u tf=0.5n cje=12p vje=0.48 mje=0.5 cjc=6p vjc=0.7 mjc=0.33 kf=2f
+
+.control 
+run        
+plot v(6) vs i(v4)
+set hcopypscolor=1
+hardcopy q1.ps v(6) vs i(v4)
+ 
+.endc                
+.end

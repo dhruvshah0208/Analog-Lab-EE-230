@@ -1,0 +1,14 @@
+Circuit: 190020039 dhruv shah bjt_diff_amp
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+
+No. of Data Rows : 1
+i(vee) = 1.135396e-03
+i(vc1) = 5.630784e-04
+i(vc2) = 5.630784e-04
+v(4) = -6.46041e-01
+v(2) = 8.171067e+00
+v(3) = 8.171067e+00
+
